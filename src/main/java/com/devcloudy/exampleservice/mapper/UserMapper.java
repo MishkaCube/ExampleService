@@ -6,10 +6,12 @@ import com.devcloudy.exampleservice.user.UserDto;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface UserMapper {
 
     UserDto userToUserDto(Users entity);
     Users toUsers(RegistrationRequest request);
+
+    RegistrationRequest userToRegistrationRequest(Users entity);
 
 }

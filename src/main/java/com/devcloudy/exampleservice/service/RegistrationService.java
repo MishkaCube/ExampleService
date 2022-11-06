@@ -16,7 +16,7 @@ public class RegistrationService {
     private final UserMapper mapper;
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public void signUp(RegistrationRequest request) {
+    public boolean signUp(RegistrationRequest request) {
         boolean isUserExists =
                 repository.findByUsername(request.getUsername())
                         .isPresent();
@@ -27,7 +27,7 @@ public class RegistrationService {
         request.setPassword(passwordEncoder.encode(request.getPassword()));
         request.setEnabled(true);
         repository.save(mapper.toUsers(request));
-        
+        return true;
     }
 
 
